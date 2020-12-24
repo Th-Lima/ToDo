@@ -15,7 +15,8 @@ namespace TodoApp.Models
         [Required(ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E001")]
         [Display(Name = "Título")]
         public string Title { get; set; }
-        
+
+        [Display(Name = "Subtitulo")]
         public string Subtitle { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E001")]
