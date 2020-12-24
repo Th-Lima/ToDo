@@ -54,9 +54,17 @@ button.accept-policy {
 
 /* Card Styles
 -------------------------------------------------- */
-/*.teste {
-   margin-top:50px;
-}*/
+.card {
+    max-width: 20rem;
+}
+.card:hover {
+    cursor: pointer;
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+    transition: 0.5s;
+    box-shadow: 7px 7px 7px #BBBBBB;
+}
 
 /* Sticky footer styles
 -------------------------------------------------- */
