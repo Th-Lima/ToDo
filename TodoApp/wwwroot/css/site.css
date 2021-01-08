@@ -55,7 +55,7 @@ button.accept-policy {
 /* Card Styles
 -------------------------------------------------- */
 .card {
-    max-width: 20rem;
+    max-width:100%;
 }
 .card:hover {
     cursor: pointer;
@@ -65,12 +65,15 @@ button.accept-policy {
     transition: 0.5s;
     box-shadow: 7px 7px 7px #BBBBBB;
 }
-
+#task {
+    text-decoration: none;
+    color:#000000;
+}
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
