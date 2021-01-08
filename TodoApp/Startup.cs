@@ -1,10 +1,14 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
 using TodoApp.Data;
+using TodoApp.Repositories;
+using TodoApp.Repositories.Contracts;
 
 namespace TodoApp
 {
@@ -24,6 +28,17 @@ namespace TodoApp
             services.AddDbContext<TodoContext>(
                 options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection"))
                 );
+
+            //Repository Pattern
+            services.AddHttpContextAccessor();
+            services.AddScoped<ITaskRepository, TaskRepository>();
+
+            services.AddMvc(options =>
+            {
+                options.ModelBindingMessageProvider.SetValueMustNotBeNullAccessor(x => "Este campo não pode ser vazio");
+            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2).AddSessionStateTempDataProvider();
+            services.AddMemoryCache();
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,6 +58,7 @@ namespace TodoApp
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseSession();
 
             app.UseAuthorization();
 
@@ -50,7 +66,7 @@ namespace TodoApp
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Task}/{action=Index}/{id?}");
             });
         }
     }
