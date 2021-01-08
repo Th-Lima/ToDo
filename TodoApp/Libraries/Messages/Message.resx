@@ -120,4 +120,22 @@
   <data name="MSG_E001" xml:space="preserve">
     <value>Este campo é obrigatório</value>
   </data>
+  <data name="MSG_E002" xml:space="preserve">
+    <value>O campo {0} deve ter no mínimo {1} caracteres</value>
+  </data>
+  <data name="MSG_E003" xml:space="preserve">
+    <value>O campo {0} deve ter no máximo {1} caracteres</value>
+  </data>
+  <data name="MSG_E004" xml:space="preserve">
+    <value>A data precisa ser maior ou igual a data atual</value>
+  </data>
+  <data name="MSG_S001" xml:space="preserve">
+    <value>Salvo com sucesso!</value>
+  </data>
+  <data name="MSG_S002" xml:space="preserve">
+    <value>Deletado com sucesso!</value>
+  </data>
+  <data name="MSG_S003" xml:space="preserve">
+    <value>Tarefa Cumprida!!!</value>
+  </data>
 </root>

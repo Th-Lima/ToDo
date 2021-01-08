@@ -68,5 +68,59 @@ namespace TodoApp.Libraries.Messages {
                 return ResourceManager.GetString("MSG_E001", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O campo {0} deve ter no mínimo {1} caracteres.
+        /// </summary>
+        public static string MSG_E002 {
+            get {
+                return ResourceManager.GetString("MSG_E002", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O campo {0} deve ter no máximo {1} caracteres.
+        /// </summary>
+        public static string MSG_E003 {
+            get {
+                return ResourceManager.GetString("MSG_E003", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A data precisa ser maior ou igual a data atual.
+        /// </summary>
+        public static string MSG_E004 {
+            get {
+                return ResourceManager.GetString("MSG_E004", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Salvo com sucesso!.
+        /// </summary>
+        public static string MSG_S001 {
+            get {
+                return ResourceManager.GetString("MSG_S001", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deletado com sucesso!.
+        /// </summary>
+        public static string MSG_S002 {
+            get {
+                return ResourceManager.GetString("MSG_S002", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tarefa Cumprida!!!.
+        /// </summary>
+        public static string MSG_S003 {
+            get {
+                return ResourceManager.GetString("MSG_S003", resourceCulture);
+            }
+        }
     }
 }
