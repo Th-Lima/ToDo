@@ -72,6 +72,14 @@ namespace TodoApp.Controllers
             return View();
         }
 
+        [HttpGet]
+        public IActionResult Details(int id)
+        {
+            Task task = _taskRepository.GetTask(id);
+
+            return View(task);
+        }
+        
         public IActionResult IsDone(int id)
         {
             Task task = _taskRepository.GetTask(id);

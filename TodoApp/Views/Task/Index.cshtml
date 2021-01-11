@@ -25,7 +25,7 @@
             {
                 if (item.IsDone)
                 {
-                    <a id="task" style="cursor:default">
+                    <a id="task" class="btnDetails" asp-action="Details" asp-controller="Task" asp-route-id="@item.Id">
                         <div class="text-center">
                             <figure class="card card-task border-success mb-3 mt-5 mr-5">
                                 <div class=" bg-transparent border-success">
@@ -80,7 +80,7 @@
                 }
                 else
                 {
-                    <a id="task" asp-action="Update" asp-controller="Task" asp-route-id="@item.Id">
+                    <a id="task" class="btnDetails" asp-action="Details" asp-controller="Task" asp-route-id="@item.Id">
                         <div class="text-center">
                             <figure class="card border-success mb-3 mt-5 mr-5">
                                 <div class=" bg-transparent border-success">
@@ -125,12 +125,13 @@
                                     @if (item.ConclusionDate < DateTime.Today)
                                     {
                                         <br />
-                                        <small class="text-danger">Tarefa com a conclusão atrasada</small>
+                                        <small class="text-danger">Tarefa com a data de conclusão atrasada</small>
                                     }
                                 </div>
                                 <div class="card-footer bg-transparent border-success">
                                     <a class="btn btn-outline-success btnIsDone" title="Cumprir" asp-action="IsDone" asp-controller="Task" asp-route-id="@item.Id"><i class="fas fa-check"></i></a>
                                     <a class="btn btn-outline-danger deleteTask" title="Excluir" asp-action="Delete" asp-route-id="@item.Id" onclick="alert_it()"><i class="fas fa-trash"></i></a>
+                                    <a class="btn btn-outline-primary" title="Editar" asp-action="Update" asp-route-id="@item.Id"><i class="fas fa-edit"></i></a>
                                 </div>
                             </figure>
                         </div>
@@ -150,22 +151,3 @@
 
     </div>
 </div>
-
-<!-- Modal -->
-<!--<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Cadastrar</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div id="registerModal">
-
-                </div>
-            </div>
-        </div>
-    </div>
-</div>-->
