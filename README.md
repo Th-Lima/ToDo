@@ -21,3 +21,8 @@ utilizando **.NET Core** com banco de dados **SQLite**
 #### Banco de Dados
 * SQLite
 
+## Para rodar o projeto
+* Necessário baixar o DB browser e SQLite -> https://sqlitebrowser.org/dl/
+* Visual Studio
+    
+    Após clonar o projeto, basta roda-lo em seu Visual Studio com Ctrl + F5
