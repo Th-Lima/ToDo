@@ -21,6 +21,10 @@ utilizando **.NET Core** com banco de dados **SQLite**
 #### Banco de Dados
 * SQLite
 
+## :rainbow: Layout:
+![image](https://user-images.githubusercontent.com/36715075/105081290-c00f5780-5a70-11eb-91e3-afe31ab46e78.png)
+
+
 ## Para rodar o projeto
 * Necessário baixar o DB browser e SQLite -> https://sqlitebrowser.org/dl/
 * Visual Studio
