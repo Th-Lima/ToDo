@@ -11,7 +11,9 @@ namespace TodoApp.Repositories.Contracts
         void Register(Task task);
         void Updade(Task task);
         Task GetTask(int id);
+        List<Task> GetAllConcludedTasks();
         void Delete(int id);
+        void DeleteConcludedTasks();
         IEnumerable<Task> GetAllTasks();
     }
 }

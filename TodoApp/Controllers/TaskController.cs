@@ -104,5 +104,23 @@ namespace TodoApp.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+
+        [HttpGet]
+        public IActionResult DeleteAllTasksConcluded()
+        {
+            var taskConcludedList = _taskRepository.GetAllConcludedTasks();
+
+            if(taskConcludedList.Count <= 0 || taskConcludedList == null)
+            {
+                TempData["MSG_I"] = Message.MSG_I001;
+            }
+            else
+            {
+                _taskRepository.DeleteConcludedTasks();
+                TempData["MSG_I"] = Message.MSG_S002;
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

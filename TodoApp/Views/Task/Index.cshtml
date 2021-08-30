@@ -9,11 +9,17 @@
     <h3 class="text-center">
         Suas Taferas
     </h3>
-
+</div>
+<div>
+    <a class="btn btn-danger deleteTask" onclick="alert_it()" asp-action="DeleteAllTasksConcluded" asp-controller="Task">Deletar tarefas concluídas</a>
 </div>
 @if (TempData["MSG_S"] != null)
 {
     <p class="alert alert-success text-center col-md-5 mb-5" style="margin:auto; border:1px solid green"><b>@TempData["MSG_S"]</b></p>
+}
+@if (TempData["MSG_I"] != null)
+{
+    <p class="alert alert-danger text-center col-md-5 mb-5" style="margin:auto; border:1px solid red"><b>@TempData["MSG_I"]</b></p>
 }
 
 <div class="container">
