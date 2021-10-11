@@ -9,23 +9,64 @@ namespace TodoApp.Repositories
     public class TaskRepository : ITaskRepository
     {
         private TodoContext _db;
+        
         public TaskRepository(TodoContext db)
         {
             _db = db;
         }
 
+        /// <summary>
+        /// Obtém todas as tarefas concluídas do banco
+        /// </summary>
+        /// <returns></returns>
+        public List<Task> GetAllConcludedTasks()
+        {
+            return _db.Tasks.Where(x => x.IsDone == true).ToList();
+        }
+
+        /// <summary>
+        /// Obtém uma tarefa pelo Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public Task GetTask(int id)
+        {
+            return _db.Tasks.Find(id);
+        }
+
+        /// <summary>
+        /// Obtém todas as taks do banco
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<Task> GetAllTasks()
+        {
+            return _db.Tasks;
+        }
+
+        /// <summary>
+        /// Cadastra uma task no banco
+        /// </summary>
+        /// <param name="task"></param>
         public void Register(Task task)
         {
             _db.Add(task);
             _db.SaveChanges();
         }
 
+        /// <summary>
+        /// Atualiza uma task no banco
+        /// </summary>
+        /// <param name="task"></param>
         public void Updade(Task task)
         {
             _db.Update(task);
             _db.SaveChanges();
         }
 
+        /// <summary>
+        /// Deleta uma task do banco
+        /// </summary>
+        /// <param name="id"></param>
         public void Delete(int id)
         {
             Task task = GetTask(id);
@@ -33,31 +74,36 @@ namespace TodoApp.Repositories
             _db.SaveChanges();
         }
 
-        public void DeleteConcludedTasks()
+        /// <summary>
+        /// Delete todas as tarefas do banco
+        /// </summary>
+        /// <param name="allTasks"></param>
+        public void DeleteAll(IEnumerable<Task> allTasks)
         {
-            var tasks = GetAllConcludedTasks();
-
-            foreach (var task in tasks)
+            if(allTasks != null)
             {
-                _db.Remove(task);
+                foreach (var task in allTasks)
+                {
+                    this.Delete(task.Id);
+                }
             }
-
-            _db.SaveChanges();
         }
 
-        public List<Task> GetAllConcludedTasks()
+        /// <summary>
+        /// Defini como concluída todas as tarefas do banco
+        /// </summary>
+        /// <param name="tasks"></param>
+        public void ConcludedAllTasks(IEnumerable<Task> tasks)
         {
-            return _db.Tasks.Where(x => x.IsDone == true).ToList();
-        }
+            if (tasks != null)
+            {
+                foreach (var task in tasks)
+                {
+                    task.IsDone = true;
 
-        public Task GetTask(int id)
-        {
-            return _db.Tasks.Find(id);
-        }
-
-        public IEnumerable<Task> GetAllTasks()
-        {
-            return _db.Tasks;
+                    this.Updade(task);
+                }
+            }
         }
     }
 }

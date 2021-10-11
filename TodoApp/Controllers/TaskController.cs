@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using TodoApp.Helpers;
+using System.Linq;
+using TodoApp.Extensions;
 using TodoApp.Libraries.Messages;
 using TodoApp.Models;
 using TodoApp.Repositories.Contracts;
@@ -31,11 +32,14 @@ namespace TodoApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (DateHelper.VerifyDate(task))
+                var taskDate = task.ConclusionDate;
+
+                if (taskDate.VerifyDate())
                 {
                     TempData["MSG_E"] = Message.MSG_E004;
                     return View();
                 }
+
                 _taskRepository.Register(task);
                 TempData["MSG_S"] = Message.MSG_S001;
 
@@ -58,7 +62,9 @@ namespace TodoApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (DateHelper.VerifyDate(task))
+                var taskDate = task.ConclusionDate;
+
+                if (taskDate.VerifyDate())
                 {
                     TempData["MSG_E"] = Message.MSG_E004;
                     return View();
@@ -116,8 +122,44 @@ namespace TodoApp.Controllers
             }
             else
             {
-                _taskRepository.DeleteConcludedTasks();
-                TempData["MSG_I"] = Message.MSG_S002;
+                _taskRepository.DeleteAll(taskConcludedList);
+                TempData["MSG_S"] = Message.MSG_S002;
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpGet]
+        public IActionResult DeleteAll()
+        {
+            var allTasks = _taskRepository.GetAllTasks();
+
+            if(allTasks.Count() <= 0 || allTasks == null)
+            {
+                TempData["MSG_I"] = Message.MSG_I001;
+            }
+            else
+            {
+                _taskRepository.DeleteAll(allTasks);
+                TempData["MSG_S"] = Message.MSG_S002;
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpGet]
+        public IActionResult ConcludedAllTasks()
+        {
+            var allTasks = _taskRepository.GetAllTasks();
+
+            if(allTasks.Count() <= 0 || allTasks == null)
+            {
+                TempData["MSG_I"] = Message.MSG_I002;
+            }
+            else
+            {
+                _taskRepository.ConcludedAllTasks(allTasks);
+                TempData["MSG_S"] = Message.MSG_S001;
             }
 
             return RedirectToAction(nameof(Index));
