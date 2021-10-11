@@ -106,6 +106,15 @@ namespace TodoApp.Libraries.Messages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Erro, Não existem tarefas!.
+        /// </summary>
+        public static string MSG_I002 {
+            get {
+                return ResourceManager.GetString("MSG_I002", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Salvo com sucesso!.
         /// </summary>
         public static string MSG_S001 {

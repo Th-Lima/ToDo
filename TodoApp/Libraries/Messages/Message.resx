@@ -132,6 +132,9 @@
   <data name="MSG_I001" xml:space="preserve">
     <value>Não existem tarefas concluídas</value>
   </data>
+  <data name="MSG_I002" xml:space="preserve">
+    <value>Erro, Não existem tarefas!</value>
+  </data>
   <data name="MSG_S001" xml:space="preserve">
     <value>Salvo com sucesso!</value>
   </data>

@@ -6,15 +6,15 @@ $(document).ready(function () {
 
     Mask();
     AlertIsDone();
-    AlertDelete();
+    AlertAction();
 });
 
 function Mask() {
     $(".dateConclusion").mask("99/99/9999");
 }
 
-function AlertDelete() {
-    $(".deleteTask").click(function (e) {
+function AlertAction() {
+    $(".alertAction").click(function (e) {
         var result = confirm("Deseja realmente concluir esta ação?");
 
         if (result == false) {
