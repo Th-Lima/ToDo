@@ -1,26 +1,5 @@
 ﻿@model IEnumerable<TodoApp.Models.Task>
 
-
-<div class="text-center">
-    <h6>Nova Tarefa</h6><a class="btn btn-outline-info fa fa-plus ml-2 btnRegisterTasks" style="width:60px;" asp-action="Register" asp-controller="Task"></a>
-</div>
-<div class="mt-4 alert alert-info">
-    <h3 class="text-center">
-        Suas Taferas
-    </h3>
-</div>
-<div class="container mb-5 alert alert-info text-center">
-    <div class="row d-inline-block mr-5">
-        <a class="btn btn-danger alertAction" onclick="alert_it()" asp-action="DeleteAll" asp-controller="Task">Deletar todas</a>
-    </div>
-    <div class="row d-inline-block mr-5">
-        <a class="btn btn-danger alertAction" onclick="alert_it()" asp-action="DeleteAllTasksConcluded" asp-controller="Task">Deletar tarefas concluídas</a>
-    </div>
-    <div class="row d-inline-block">
-        <a class="btn btn-success alertAction" onclick="alert_it()" asp-action="ConcludedAllTasks" asp-controller="Task">Cumprir todas as tarefas</a>
-    </div>
-</div>
-
 @if (TempData["MSG_S"] != null)
 {
     <p class="alert alert-success text-center col-md-5 mb-5" style="margin:auto; border:1px solid green"><b>@TempData["MSG_S"]</b></p>
@@ -29,139 +8,87 @@
 {
     <p class="alert alert-danger text-center col-md-5 mb-5" style="margin:auto; border:1px solid red"><b>@TempData["MSG_I"]</b></p>
 }
-
-<div class="container">
-    <div class="row">
-
-        @if (Model.Count() > 0)
-        {
-            @foreach (var item in Model)
-            {
-                if (item.IsDone)
-                {
-                    <a id="task" class="btnDetails" asp-action="Details" asp-controller="Task" asp-route-id="@item.Id">
-                        <div class="text-center">
-                            <figure class="card card-task border-success mb-3 mt-5 mr-5">
-                                <div class=" bg-transparent border-success">
-                                    <div class="card-header">
-
-                                        @if (item.Title.Length >= 10)
-                                        {
-                                            string value = item.Title.Substring(0, Math.Min(15, item.Title.Length));
-                                            <span>@value ...</span>
-                                        }
-                                        else
-                                        {
-                                            <span>@item.Title</span>
-                                        }
-                                    </div>
-
-                                    <div class="card-header-pills">
-                                        <small class="text-danger done">Cumprido </small><i class="fas fa-check text-danger"></i>
-                                    </div>
-                                </div>
-
-                                <div class="card-body">
-
-                                    @if (item.Subtitle.Length >= 10)
-                                    {
-                                        string value = item.Subtitle.Substring(0, Math.Min(15, item.Subtitle.Length));
-                                        <h6>@value ...</h6>
-                                        <br />
-                                    }
-                                    else
-                                    {
-                                        <h6 class="card-title">@item.Subtitle</h6>
-                                    }
-
-                                    @if (item.Description.Length >= 20)
-                                    {
-                                        string value = item.Description.Substring(0, Math.Min(25, item.Description.Length));
-                                        <span>@value ...</span>
-                                        <br />
-                                    }
-                                    else
-                                    {
-                                        <p class="card-text">@item.Description.Length</p>
-                                    }
-                                </div>
-                                <div class="card-footer bg-transparent border-success">
-                                    <a class="btn btn-outline-danger alertAction" title="Excluir" asp-action="Delete" asp-route-id="@item.Id" onclick="alert_it()"><i class="fas fa-trash"></i></a>
-                                </div>
-                            </figure>
-                        </div>
-                    </a>
-                }
-                else
-                {
-                    <a id="task" class="btnDetails" asp-action="Details" asp-controller="Task" asp-route-id="@item.Id">
-                        <div class="text-center">
-                            <figure class="card border-success mb-3 mt-5 mr-5">
-                                <div class=" bg-transparent border-success">
-                                    <div class="card-header">
-
-                                        @if (item.Title.Length >= 10)
-                                        {
-                                            string value = item.Title.Substring(0, Math.Min(15, item.Title.Length));
-                                            <span>@value ...</span>
-                                        }
-                                        else
-                                        {
-                                            <span>@item.Title</span>
-                                        }
-                                    </div>
-                                </div>
-
-                                <div class="card-body">
-
-                                    @if (item.Subtitle.Length >= 10)
-                                    {
-                                        string value = item.Subtitle.Substring(0, Math.Min(15, item.Subtitle.Length));
-                                        <h6>@value ...</h6>
-                                        <br />
-                                    }
-                                    else
-                                    {
-                                        <h6 class="card-title">@item.Subtitle</h6>
-                                    }
-
-                                    @if (item.Description.Length >= 20)
-                                    {
-                                        string value = item.Description.Substring(0, Math.Min(25, item.Description.Length));
-                                        <span>@value ...</span>
-                                        <br />
-                                    }
-                                    else
-                                    {
-                                        <p class="card-text">@item.Description</p>
-                                    }
-                                    <small>Cumprir até @item.ConclusionDate.ToString("dd/MM/yyyy")</small>
-                                    @if (item.ConclusionDate < DateTime.Today)
-                                    {
-                                        <br />
-                                        <small class="text-danger">Tarefa com a data de conclusão atrasada</small>
-                                    }
-                                </div>
-                                <div class="card-footer bg-transparent border-success">
-                                    <a class="btn btn-outline-success btnIsDone" title="Cumprir" asp-action="IsDone" asp-controller="Task" asp-route-id="@item.Id"><i class="fas fa-check"></i></a>
-                                    <a class="btn btn-outline-danger alertAction" title="Excluir" asp-action="Delete" asp-route-id="@item.Id" onclick="alert_it()"><i class="fas fa-trash"></i></a>
-                                    <a class="btn btn-outline-primary" title="Editar" asp-action="Update" asp-route-id="@item.Id"><i class="fas fa-edit"></i></a>
-                                </div>
-                            </figure>
-                        </div>
-                    </a>
-                }
-
-            }
-        }
-        else
-        {
-            <div class="container">
-                <div class="alert alert-warning">
-                    Poxa, Nenhuma tarefa cadastrada, clique em <strong>"Nova Tarefa"</strong> e comece a gerencias suas tarefas diárias!
-                </div>
-            </div>
-        }
-
+<div class="container mb-5 mt-5 alert alert-dark text-center">
+    <h3>Ações gerais</h3>
+    <div class="mt-4">
+        <div class="row d-inline-block mr-5">
+            <a class="btn btn-success btnRegisterTasks" asp-action="Register" asp-controller="Task"><i class="fa fa-plus"></i> Criar nova</a>
+        </div>
+        <div class="row d-inline-block mr-5">
+            <a class="btn btn-success alertAction" onclick="alert_it()" asp-action="ConcludedAllTasks" asp-controller="Task"><i class="fa fa-check"></i> Cumprir todas as tarefas</a>
+        </div>
+        <div class="row d-inline-block mr-5">
+            <a class="btn btn-danger alertAction" onclick="alert_it()" asp-action="DeleteAllTasksConcluded" asp-controller="Task"><i class="fa fa-trash"></i> Deletar tarefas cumpridas</a>
+        </div>
+        <div class="row d-inline-block mr-5">
+            <a class="btn btn-danger alertAction" onclick="alert_it()" asp-action="DeleteAll" asp-controller="Task"><i class="fa fa-trash"></i> Deletar todas</a>
+        </div>
     </div>
 </div>
+
+
+
+@if (Model.Count() > 0)
+{
+    <table class="table caption-top">
+
+        <thead>
+            <tr>
+                <th scope="col">Titulo</th>
+                <th scope="col">Infos</th>
+                <th scope="col">Ações</th>
+            </tr>
+        </thead>
+
+        @foreach (var item in Model)
+        {
+            if (item.IsDone)
+            {
+                <tbody>
+                    <tr>
+                        <th scope="row">
+                            <a id="task" class="btnDetails btn btn btn-light" asp-action="Details" asp-controller="Task" asp-route-id="@item.Id">
+                                @item.Title
+                            </a>
+                        </th>
+                        <td><small class="text-danger done ml-3">Cumprido </small><i class="fas fa-check text-danger"></i></td>
+                        <td><a class="btn btn-outline-danger alertAction" title="Excluir" asp-action="Delete" asp-route-id="@item.Id" onclick="alert_it()"><i class="fas fa-trash"></i></a></td>
+                    </tr>
+                </tbody>
+            }
+            else
+            {
+                <tbody>
+                    <tr>
+                        <th scope="row">
+                            <a id="task" class="btnDetails btn btn-light" asp-action="Details" asp-controller="Task" asp-route-id="@item.Id">
+                                @item.Title
+                            </a>
+                        </th>
+                        <td>
+                            <small>Cumprir até @item.ConclusionDate.ToString("dd/MM/yyyy")</small>
+                            @if (item.ConclusionDate < DateTime.Today)
+                            {
+                                <span> | </span> <small class="text-danger">Tarefa com a data de conclusão atrasada</small>
+                            }
+                        </td>
+                        <td>
+                            <a class="btn btn-outline-success btnIsDone " title="Cumprir" asp-action="isdone" asp-controller="task" asp-route-id="@item.Id"><i class="fas fa-check"></i></a>
+                            <a class="btn btn-outline-primary" title="Editar" asp-action="Update" asp-route-id="@item.Id"><i class="fas fa-edit"></i></a>
+                            <a class="btn btn-outline-danger alertAction" title="Excluir" asp-action="Delete" asp-route-id="@item.Id" onclick="alert_it()"><i class="fas fa-trash"></i></a>
+                        </td>
+                    </tr>
+                </tbody>
+            }
+        }
+
+    </table>
+}
+else
+{
+    <div class="container text-center">
+        <div class="alert alert-warning">
+            Poxa, Nenhuma tarefa cadastrada, clique em <strong>"Criar Nova"</strong> e comece a gerenciar suas tarefas diárias!
+        </div>
+    </div>
+}
