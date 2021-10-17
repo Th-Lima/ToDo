@@ -12,6 +12,7 @@ utilizando **.NET Core** com banco de dados **SQLite**
 * DI (Dependency Injection | Injeção de dependência)
 ## :fire: Tecnologias utilizadas:
 * C#
+* .NET Core
 * ASP.NET Core
 * Bootstrap
 * CSS3
