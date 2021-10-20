@@ -22,13 +22,13 @@ namespace TodoApp.Controllers
         }
 
         [HttpGet]
-        public IActionResult Register()
+        public IActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult Register([FromForm] Task task)
+        public IActionResult Create([FromForm] Task task)
         {
             if (ModelState.IsValid)
             {
