@@ -23,7 +23,7 @@ utilizando **.NET Core** com banco de dados **SQLite**
 * SQLite
 
 ## :rainbow: Layout:
-![image](https://user-images.githubusercontent.com/36715075/137645566-e8fb5a7b-9dce-4493-b39f-6706f32ffff4.png)
+![image](https://user-images.githubusercontent.com/36715075/138008239-325ebd1e-6f90-4a9f-b8b6-0b1bd27dc28c.png)
 
 ## Para rodar o projeto
 * Necessário baixar o DB browser e SQLite -> https://sqlitebrowser.org/dl/
