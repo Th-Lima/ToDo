@@ -5,7 +5,7 @@ namespace TodoApp.Repositories.Contracts
 {
     public interface ITaskRepository
     {
-        void Register(Task task);
+        void Create(Task task);
 
         void Updade(Task task);
 

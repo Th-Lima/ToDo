@@ -47,7 +47,7 @@ namespace TodoApp.Repositories
         /// Cadastra uma task no banco
         /// </summary>
         /// <param name="task"></param>
-        public void Register(Task task)
+        public void Create(Task task)
         {
             _db.Add(task);
             _db.SaveChanges();

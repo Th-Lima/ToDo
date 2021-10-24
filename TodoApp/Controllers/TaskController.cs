@@ -40,7 +40,7 @@ namespace TodoApp.Controllers
                     return View();
                 }
 
-                _taskRepository.Register(task);
+                _taskRepository.Create(task);
                 TempData["MSG_S"] = Message.MSG_S001;
 
                 return RedirectToAction(nameof(Index));
